@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Call for Papers – Future of Development Studies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Palette ─────────────────────────────────────────────── */
+    :root {
+      --orange:        #C14B1A;
+      --orange-mid:    #D0601E;
+      --orange-light:  #E8823A;
+      --gold:          #B87A0A;
+      --gold-bright:   #D4A020;
+      --brown-dark:    #1A0A02;
+      --brown-mid:     #3A1E08;
+      --cream:         #FBF6EE;
+      --cream-deep:    #F2E8D5;
+      --sand:          #E8D5B0;
+      --text:          #2A1505;
+      --text-mid:      #5A3A1A;
+    }
+
+    /* ── Reset & Base ────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Aptos', 'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.8;
+      font-size: 15.5px;
+    }
+
+    /* ── Batik diamond pattern ───────────────────────────────── */
+    .batik-bg {
+      background-color: var(--cream);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 4L56 30L30 56L4 30Z' fill='none' stroke='%23C14B1A' stroke-width='0.7' stroke-opacity='0.13'/%3E%3Ccircle cx='30' cy='30' r='3' fill='%23C14B1A' fill-opacity='0.07'/%3E%3C/svg%3E");
+    }
+
+    /* ── Top accent bar ──────────────────────────────────────── */
+    .top-bar {
+      height: 6px;
+      background: linear-gradient(90deg,
+        var(--brown-dark) 0%,
+        var(--orange) 25%,
+        var(--gold-bright) 50%,
+        var(--orange) 75%,
+        var(--brown-dark) 100%);
+    }
+
+    /* ── HEADER (light) ──────────────────────────────────────── */
+    header {
+      padding: 2.8rem 3rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: 0;
+      width: 380px; height: 380px;
+      background: radial-gradient(ellipse, rgba(193,75,26,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      gap: 2.4rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .logo-wrap { flex-shrink: 0; }
+
+    .logo-wrap img {
+      width: 190px;
+      height: 190px;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 4px 18px rgba(193,75,26,0.22));
+    }
+
+    .header-text { flex: 1; min-width: 0; }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--brown-dark);
+      line-height: 1.25;
+      margin: 0 0 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    header h1 em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .header-subtitle {
+      font-size: 1.05rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .grant-badge {
+      display: inline-block;
+      background: var(--cream-deep);
+      border: 1px solid var(--sand);
+      color: var(--text-mid);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Ornamental diamond row ──────────────────────────────── */
+    .ornament {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      padding: 1.6rem 0 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .dia {
+      display: inline-block;
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .dia-lg  { width: 12px; height: 12px; background: var(--orange); }
+    .dia-md  { width: 8px;  height: 8px;  background: var(--gold-bright); }
+    .dia-sm  { width: 5px;  height: 5px;  background: var(--brown-mid); }
+    .orn-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--sand), transparent);
+    }
+
+    /* ── Kente band ──────────────────────────────────────────── */
+    .kente {
+      height: 22px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--brown-dark)  0px,  var(--brown-dark)  18px,
+        var(--orange)      18px, var(--orange)      38px,
+        var(--gold-bright) 38px, var(--gold-bright) 58px,
+        var(--orange-mid)  58px, var(--orange-mid)  78px,
+        var(--brown-dark)  78px, var(--brown-dark)  96px,
+        var(--gold-bright) 96px, var(--gold-bright) 116px,
+        var(--orange)      116px,var(--orange)      136px,
+        var(--brown-dark)  136px,var(--brown-dark)  154px
+      );
+    }
+
+    /* ── Institution logos strip ─────────────────────────────── */
+    .institutions-strip {
+      background: #fff;
+      border-bottom: 1px solid var(--sand);
+      padding: 1.6rem 2rem;
+    }
+
+    .institutions-label {
+      text-align: center;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-mid);
+      margin-bottom: 1.3rem;
+    }
+
+    .institutions-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+
+    .inst-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.6rem 1.6rem;
+      border-right: 1px solid var(--sand);
+      flex: 0 0 auto;
+    }
+
+    .inst-item:last-child {
+      border-right: none;
+    }
+
+    .inst-logo-box {
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .inst-logo-box img {
+      max-height: 58px;
+      max-width: 130px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* fallback text badge when image fails */
+    .inst-logo-fallback {
+      display: none;
+      height: 58px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 0.8rem;
+      background: var(--cream-deep);
+      border: 1px solid var(--sand);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--orange);
+      text-align: center;
+      letter-spacing: 0.04em;
+      max-width: 130px;
+    }
+
+    .inst-name {
+      font-size: 0.68rem;
+      color: var(--text-mid);
+      text-align: center;
+      max-width: 130px;
+      line-height: 1.3;
+      font-weight: 500;
+    }
+
+    /* SDGs Center: show SDG grid + UNPAD crest side by side */
+    .sdg-box {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .sdg-box img { max-height: 52px; max-width: 60px; }
+    .unpad-crest { max-height: 52px !important; max-width: 52px !important; }
+
+    /* Larger logo box variant for Manchester */
+    .inst-logo-box--lg {
+      height: 80px;
+    }
+    .inst-logo-box--lg img {
+      max-height: 80px;
+      max-width: 200px;
+    }
+
+    /* Wide logo box for landscape logos like UNISA */
+    .inst-logo-box--wide {
+      height: 58px;
+      width: 180px;
+    }
+    .inst-logo-box--wide img {
+      width: 180px;
+      height: auto;
+    }
+
+    /* ── Convenors strip ─────────────────────────────────────── */
+    .convenors-strip {
+      background: var(--cream-deep);
+      border-top: 3px solid var(--orange);
+      padding: 1.1rem 2rem;
+      text-align: center;
+      font-size: 0.92rem;
+      color: var(--text-mid);
+    }
+    .convenors-strip strong {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--orange);
+      margin-bottom: 0.4rem;
+    }
+
+    /* ── MAIN ────────────────────────────────────────────────── */
+    main {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+    }
+
+    section { margin-bottom: 3rem; }
+
+    /* ── Section headings ────────────────────────────────────── */
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.1rem;
+    }
+    .section-heading .dia-head {
+      width: 14px; height: 14px;
+      background: var(--orange);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+    .section-heading h2 {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--orange);
+      padding-bottom: 2px;
+      border-bottom: 2px solid var(--orange);
+    }
+
+    section p { margin-bottom: 1rem; color: var(--text); }
+
+    /* ── Theme cards ─────────────────────────────────────────── */
+    .theme-card {
+      position: relative;
+      background: #fff;
+      border: 1px solid #DDD0BC;
+      border-radius: 6px;
+      padding: 1.5rem 1.6rem 1.5rem 2rem;
+      margin-bottom: 1.2rem;
+      overflow: hidden;
+    }
+    .theme-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 5px;
+      background: linear-gradient(180deg, var(--orange) 0%, var(--gold) 100%);
+    }
+    .theme-card::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--orange-light) 0%, transparent 55%);
+      border-top-right-radius: 6px;
+    }
+    .theme-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--orange);
+      margin-bottom: 0.7rem;
+    }
+    .theme-card p { font-size: 0.95rem; margin: 0; }
+
+    /* ── Deadline pill ───────────────────────────────────────── */
+    .pill {
+      display: inline-block;
+      background: var(--orange);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.18rem 0.7rem;
+      border-radius: 20px;
+      letter-spacing: 0.03em;
+    }
+
+    .instr-box {
+      background: #fff;
+      border: 1px solid #DDD0BC;
+      border-radius: 6px;
+      padding: 1.5rem 1.6rem;
+    }
+
+    .divider { border: none; border-top: 1px solid var(--sand); margin: 2.5rem 0; }
+
+    .section-heading.dark-accent .dia-head { background: var(--brown-dark); }
+    .section-heading.dark-accent h2 {
+      color: var(--brown-dark);
+      border-bottom-color: var(--brown-dark);
+    }
+
+    /* ── Info grid ───────────────────────────────────────────── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+    .info-card {
+      background: var(--cream-deep);
+      border-radius: 6px;
+      border-top: 4px solid var(--orange);
+      padding: 1.3rem 1.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .info-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 50px; height: 50px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3E%3Cpath d='M25 2L48 25L25 48L2 25Z' fill='none' stroke='%23C14B1A' stroke-width='0.8' stroke-opacity='0.2'/%3E%3C/svg%3E") no-repeat center;
+    }
+    .info-card h3 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--orange);
+      margin-bottom: 0.6rem;
+    }
+    .info-card p { font-size: 0.92rem; margin: 0; }
+
+    /* ── Guidance ────────────────────────────────────────────── */
+    .guidance-intro {
+      background: linear-gradient(135deg, var(--brown-dark) 0%, var(--brown-mid) 100%);
+      border-radius: 6px;
+      color: #fff;
+      padding: 2rem 2rem 1.6rem;
+      margin-bottom: 1.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .guidance-intro::before {
+      content: '';
+      position: absolute;
+      top: -30px; right: -30px;
+      width: 140px; height: 140px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cpath d='M70 5L135 70L70 135L5 70Z' fill='none' stroke='%23E8823A' stroke-width='1.2' stroke-opacity='0.35'/%3E%3Cpath d='M70 25L115 70L70 115L25 70Z' fill='none' stroke='%23E8823A' stroke-width='0.8' stroke-opacity='0.2'/%3E%3C/svg%3E") no-repeat center;
+    }
+    .guidance-intro h2 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; }
+    .guidance-intro p { font-size: 0.88rem; color: rgba(255,255,255,0.72); font-style: italic; margin: 0; }
+
+    .guidance-block {
+      background: #fff;
+      border: 1px solid #DDD0BC;
+      border-radius: 6px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1.1rem;
+    }
+    .guidance-block h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--brown-dark);
+      margin-bottom: 0.7rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--sand);
+    }
+    .guidance-block p, .guidance-block ul { font-size: 0.94rem; margin-bottom: 0.5rem; }
+    .guidance-block ul { padding-left: 1.2rem; }
+    .guidance-block ul li { margin-bottom: 0.45rem; }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      list-style: none;
+      padding: 0;
+      margin-top: 0.3rem;
+    }
+    .tag-list li {
+      background: var(--brown-dark);
+      color: #fff;
+      padding: 0.3rem 0.85rem;
+      border-radius: 3px;
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    .checklist { list-style: none; padding: 0; }
+    .checklist li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #EEE3D0;
+      font-size: 0.94rem;
+    }
+    .checklist li::before {
+      content: '◆';
+      color: var(--orange);
+      font-size: 0.6rem;
+      flex-shrink: 0;
+      position: relative;
+      top: -1px;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────── */
+    footer {
+      background: var(--brown-dark);
+      color: rgba(255,255,255,0.5);
+      padding: 1.4rem 2rem;
+      text-align: center;
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+    footer a { color: var(--orange-light); text-decoration: none; }
+
+    /* ── Responsive ──────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .header-inner { flex-direction: column; text-align: center; padding: 0 1rem; }
+      header { padding: 2rem 1rem 0; }
+      .inst-item { padding: 0.6rem 1rem; }
+      main { padding: 2rem 1rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Top bar ───────────────────────────────────────────────────── -->
+<div class="top-bar"></div>
+
+<!-- ── HEADER ───────────────────────────────────────────────────── -->
+<header class="batik-bg">
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <img src="logo.png" alt="Workshop Logo" />
+    </div>
+    <div class="header-text">
+      <h1>Towards a <em>Global South-driven</em><br>Future for Development Studies</h1>
+      <p class="header-subtitle">1st Workshop in Indonesia &nbsp;·&nbsp; TBC: April 2027</p>
+      <span class="grant-badge">British Academy Writing Workshop Grant · IWW25/100268</span>
+    </div>
+  </div>
+
+  <div class="ornament">
+    <div class="orn-line"></div>
+    <span class="dia dia-sm"></span>
+    <span class="dia dia-md"></span>
+    <span class="dia dia-lg"></span>
+    <span class="dia dia-md"></span>
+    <span class="dia dia-sm"></span>
+    <span class="dia dia-md"></span>
+    <span class="dia dia-lg"></span>
+    <span class="dia dia-md"></span>
+    <span class="dia dia-sm"></span>
+    <div class="orn-line"></div>
+  </div>
+</header>
+
+<!-- ── Kente band ────────────────────────────────────────────────── -->
+<div class="kente"></div>
+
+<!-- ── Institution logos ─────────────────────────────────────────── -->
+<div class="institutions-strip">
+  <div class="institutions-label">Collaborating Institutions</div>
+  <div class="institutions-logos">
+
+    <!-- University of Manchester -->
+    <div class="inst-item">
+      <div class="inst-logo-box inst-logo-box--lg">
+        <img src="images/logo-manchester.svg" alt="University of Manchester" />
+      </div>
+      <span class="inst-name">University of Manchester</span>
+    </div>
+
+    <!-- SDGs Center, Universitas Padjadjaran -->
+    <div class="inst-item">
+      <div class="inst-logo-box sdg-box">
+        <img src="images/logo-sdgcenter-unpad.png" alt="SDGs Center, Universitas Padjadjaran" />
+        <img src="images/logo-unpad.png" alt="Universitas Padjadjaran" class="unpad-crest" />
+      </div>
+      <span class="inst-name">SDGs Center, Universitas Padjadjaran</span>
+    </div>
+
+    <!-- University of South Africa -->
+    <div class="inst-item">
+      <div class="inst-logo-box inst-logo-box--wide">
+        <img src="images/logo-unisa-icon.png" alt="University of South Africa" />
+      </div>
+      <span class="inst-name">University of South Africa</span>
+    </div>
+
+    <!-- University of Johannesburg -->
+    <div class="inst-item">
+      <div class="inst-logo-box">
+        <img src="images/logo-uj.png" alt="University of Johannesburg" />
+      </div>
+      <span class="inst-name">University of Johannesburg</span>
+    </div>
+
+    <!-- King's College London -->
+    <div class="inst-item">
+      <div class="inst-logo-box">
+        <img src="images/logo-kcl.png" alt="King's College London" />
+      </div>
+      <span class="inst-name">King's College London</span>
+    </div>
+
+
+  </div>
+</div>
+
+<!-- ── Convenors ─────────────────────────────────────────────────── -->
+<div class="convenors-strip">
+  <strong>Convenors</strong>
+  Pritish Behuria (University of Manchester), Arief Anshory Yusuf (Padjadjaran University), Sebeka Plaatje (University of South Africa), Elvis Avenyo (University of Johannesburg) and Andy Sumner (King's College London).
+</div>
+
+<!-- ── MAIN ──────────────────────────────────────────────────────── -->
+<main>
+
+  <!-- Background -->
+  <section>
+    <div class="section-heading">
+      <div class="dia-head"></div>
+      <h2>Background</h2>
+    </div>
+    <p>Since its inception, development studies has appeared to be in perpetual crisis. The current geopolitical moment, as well as reductions in foreign aid, has contributed to these old discussions resurfacing. Despite what may seem to be uncertainty about the future of the field, new development studies programmes at undergraduate and postgraduate level have proliferated globally. There are also issues of consistent knowledge divides where the 'Future of the Development Studies' continues to be debated in North America and Europe yet the voices of the Global Majority, especially those residing in Asia and Africa remain hidden from sight.</p>
+  </section>
+
+  <!-- Workshops for ECRs -->
+  <section>
+    <div class="section-heading">
+      <div class="dia-head"></div>
+      <h2>Workshops for Early-Career Researchers</h2>
+    </div>
+    <p>To enhance spaces for early-career researchers based in the Global South, we will be holding two workshops on 'Towards a Global South-driven Future for Development Studies'. The aim of the workshop is to centre the voices of early-career researchers working on 'development' (broadly conceived) who are based in Asia and Africa. We see this as part of a series of events in the future to deepen knowledge about the experiences of studying and researching development studies outside North America and Europe. The immediate goal of this programme (comprising one workshop in Indonesia and one in Johannesburg) is to publish one edited collection with a prestigious university press and/or a special issue, entirely comprising chapters written by early career scholars based in Asia and Africa. We invite extended abstracts (750-1,000 words) to be submitted by <span class="pill">30 September</span> on one of the subjects listed below. These workshops are funded by a British Academy Writing Workshop grant (IWW25/100268), which was awarded in 2026, and is part of a collaboration between The University of Manchester, King's College London, Padjadjaran University, University of South Africa and University of Johannesburg.</p>
+  </section>
+
+  <!-- Themes -->
+  <section>
+    <div class="section-heading">
+      <div class="dia-head"></div>
+      <h2>Call for Papers – Themes</h2>
+    </div>
+
+    <div class="theme-card">
+      <h3>1) Framing Development: Studying What?</h3>
+      <p>Defining development has always been contentious. In fact, the concept itself has been defined in so many ways and has become so laden with baggage about what it is and whose interests it reflects that it now may act as a flashpoint for conflict between different schools of thought in development studies. For some, it means raising living standards. But even there, there is debate about how to raise living standards: targeting growth exclusively, focusing on structural transformation or prioritising policies aimed at individual empowerment (through health and education). Others argue that development is associated with the imposition of western oppression in the form of modernity. Some call for socio-economic transformation or even alternatives to development while others a more minimalist, better status quo without modernity or major transformations There is also an overwhelming tendency to equate 'development' narrowly in relation to 'foreign aid', best epitomised by Adam Tooze's recent claims of the 'end of development'. However, development, to many and especially in the Global South has different origins and a very different meaning, which is not beholden to how Europeans and North Americans engage with the rest of the world.</p>
+    </div>
+
+    <div class="theme-card">
+      <h3>2) The Scope of Development: Studying Where?</h3>
+      <p>Development studies has always been specifically concerned with analysing socio-economic development in what are popularly considered 'developing countries'. Binary categorisations of developing/developed, Global South/Global North have long been criticised by scholars from neighbouring disciplines and even some working within development studies. Structuralists made the case for distinguishing between 'developing' and 'developed' countries or 'core' and 'periphery' on the basis of the subordinate position of 'developing' countries within the global political economy. Very few countries, most of which are in East Asia, have sustained economic transformation over the last 70 years and reduced the gap in income and other indicators with industrialised Western countries. On the other hand, recent 'global development' scholarship has made the case for more universalist framings of development, arguing that the differences between countries of the Global South and the Global North have blurred sufficiently far to make the binary meaningless, arguing instead that there are common problems faced across all societies. Papers engaging with this theme should examine the question of which regions 'development studies' should focus on and what the case should be for such a choice. This is a vibrant debate within the field so any paper should engage with existing discussions about this subject, which have proliferated over the last decade.</p>
+    </div>
+
+    <div class="theme-card">
+      <h3>3) The Decolonisation of Knowledge: How to study 'development'?</h3>
+      <p>Development studies has a prominent presence in Europe, which has been attributed to colonial history. This version of development, associated with Harry Truman's post-WWII speech has been closely associated with aid-driven development and has been a target of criticism across the social sciences. Paradoxically, there are other Southern-based origin stories of development, most closely associated with Bandung that are as notable. This history is influenced by an anti-imperialist agenda and the formal decolonisation process, emphasising emancipation and national development. Calls to decolonise knowledge have grown louder over the last decade though the intellectual decolonisation (of knowledge creation and use) and decolonial theory are not necessarily synonymous for all. Those who emphasize epistemic power contend that the perpetuation of stereotypes, exoticization, and the devaluation of non-Western cultures have served as the primary oppressive mechanisms. On the other hand, proponents of material political economy argue that the global South's primary oppressive mechanisms are deeply rooted in history, economic structures, international trade, debt burdens, and unequal access to resources.</p>
+    </div>
+
+    <div class="theme-card">
+      <h3>4) Any other topic that fits with the broad theme of 'Future of Development Studies'</h3>
+      <p>Arguably, traditional discussions of development studies may seem out of the date given rapid changes within the global economy, technological advances, geopolitics and many other reasons. This theme invites papers ranging from new topics that are set to re-shape the parameters of the field including, for example, geopolitics and development, green transition and artificial intelligence. These papers must make clear how they fit the 'Future of Development Studies' (rather than just the future of development itself).</p>
+    </div>
+  </section>
+
+  <!-- Instructions -->
+  <section>
+    <div class="section-heading">
+      <div class="dia-head"></div>
+      <h2>Instructions for What to Send</h2>
+    </div>
+    <div class="instr-box">
+      <p>We will need three documents from all participants: 1) An extended abstract; 2) A short 2-page CV and 3) A writing sample (ideally a chapter of a PhD thesis or published journal article but work-in-progress is acceptable). Please send these documents to Pritish Behuria (<a href="mailto:Pritish.behuria@manchester.ac.uk">Pritish.behuria@manchester.ac.uk</a>) by <span class="pill">30 September, 2026</span>. Extended abstracts should follow the guidance below on writing extended abstracts and should clearly state the main contributions of the paper. Abstracts should be 750-1000 words long. If accepted for the conference, we will request final versions of short papers (3000-4000 words) or full papers (6,000-8,000 words long) be submitted by <span class="pill">15 January 2027</span>. Papers must be submitted in order to attend the workshop and claim travel expenses.</p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- About the Conference -->
+  <section>
+    <div class="section-heading dark-accent">
+      <div class="dia-head"></div>
+      <h2>About the Conference</h2>
+    </div>
+    <p>The first Asia conference will be held in Bandung, Indonesia, the location of the 1955 Asia-Africa conference of independent leaders in April 1955 (which ultimately led in the following years to the establishment of non-aligned movement and the G77 group of nations). Our host is Padjadjaran University in Bandung, Indonesia. The workshop will be in April 2027 (date TBC). The conference will have three days of events. The first day will be dedicated to presentations by participants for the 'Future of Development Studies' workshop. The outputs of this workshop will contribute to the publication of book chapters for an edited volume in a reputed academic press or a journal article for a special issue in a leading development studies journal. The second day will include presentations by Indonesia-based early career scholars on their work-in-progress to get feedback to support submission of their papers to academic journals. The third day will include focused events to provide support for early career researchers (including academic article writing, journal selection, grant applications and career opportunities).</p>
+  </section>
+
+  <!-- Eligibility / Funding / Output -->
+  <div class="info-grid">
+    <div class="info-card">
+      <h3>Eligibility</h3>
+      <p>Participants must be based at a university or other higher education institution in Asia/Africa. Participants must have been awarded a PhD after 1 October, 2017 (with flexibility for those who have had career breaks) or be currently enrolled in a PhD at a higher education institution in the Global South</p>
+    </div>
+    <div class="info-card">
+      <h3>Funding</h3>
+      <p>Supported by the British Academy Writing Workshop grant (IWW25/100268), this project will fund return flights (from within Asia), as well as accommodation for three nights, in Indonesia for all participants.</p>
+    </div>
+    <div class="info-card">
+      <h3>Output</h3>
+      <p>Outputs presented at the workshop will be part of an edited collection or a special issue that will fully comprise of early-career scholars based in Asia and Africa on 'Towards a Global South-driven Future for Development Studies'. The edited collection will be submitted to a prestigious academic press. The special issue will be published in a leading development studies journal.</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- Guidance -->
+  <section>
+    <div class="guidance-intro batik-bg">
+      <h2>Guidance for Early-Career Researchers on Writing an Extended Abstract for an International Workshop or Journal</h2>
+      <p>A guide for early career researchers in International Development Studies</p>
+    </div>
+
+    <div class="guidance-block">
+      <h3>What it is</h3>
+      <p>An extended abstract (750-1,000 words) is not a summary of work in progress. It is a condensed argument. Reviewers use it to decide whether your paper fits the programme. They need to see a clear question, a stated position, and evidence of intellectual rigour, not a tour of the terrain you plan to explore.</p>
+    </div>
+
+    <div class="guidance-block">
+      <h3>What it must contain</h3>
+      <ul>
+        <li>A title that implies a claim. Not "Inequality in Southeast Asia" but "Why service-led growth has not reduced inequality in Vietnam." The title should signal an argument.</li>
+        <li>A research question. State it explicitly, in one sentence. Everything else follows from it.</li>
+        <li>Engagement with theory and existing literature. Name the debate you are entering. Identify the gap your paper addresses. 3-4 precise references are enough, but they must be present.</li>
+        <li>A methodology statement. If relevant, what data do you use? What method? Why is it appropriate? 2-3 sentences.</li>
+        <li>A thesis or working hypothesis. State your argument. Early-stage papers may not have final results. But they must have a position.</li>
+      </ul>
+    </div>
+
+    <div class="guidance-block">
+      <h3>What to avoid</h3>
+      <p>Avoid extended abstracts that are descriptive. "This paper examines..." is not a thesis. "This paper argues that..." is. Description signals a paper without a contribution.</p>
+      <p>Avoid literature omission. An abstract with no theoretical grounding signals a thin contribution.</p>
+    </div>
+
+    <div class="guidance-block">
+      <h3>Headings to use in the extended abstract</h3>
+      <ul class="tag-list">
+        <li>Title</li>
+        <li>Research Question(s)</li>
+        <li>Theoretical Framework and Existing Literature</li>
+        <li>Methodology</li>
+        <li>Argument/Working Thesis</li>
+        <li>Expected Contribution</li>
+      </ul>
+    </div>
+
+    <div class="guidance-block">
+      <h3>Checklist before submission</h3>
+      <ul class="checklist">
+        <li>Title implies a claim, not a topic</li>
+        <li>Research question stated in one sentence</li>
+        <li>3-4 key references named and engaged</li>
+        <li>Methodology identified and briefly justified</li>
+        <li>Thesis or working hypothesis stated explicitly</li>
+        <li>Expected contribution stated explicitly</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Footer ─────────────────────────────────────────────────────── -->
+<div class="kente"></div>
+<footer>
+  Funded by the British Academy Writing Workshop Grant (IWW25/100268)<br>
+  A collaboration between The University of Manchester · King's College London · Padjadjaran University · University of South Africa · University of Johannesburg
+</footer>
+
+</body>
+</html>

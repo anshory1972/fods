@@ -61,13 +61,13 @@
   flex-shrink: 0;
 }
 .s-head h2 {
-  font-size: 1.15em;
+  font-size: 1.42em;
   font-weight: 700;
   color: var(--blue);
   line-height: 1.2;
 }
 .s-head .sub {
-  font-size: 0.62em;
+  font-size: 0.76em;
   color: var(--muted);
   margin-top: 3px;
 }
@@ -85,7 +85,7 @@
 .s-foot {
   padding: 4px 28px 6px;
   border-top: 1px solid var(--rule);
-  font-size: 0.42em;
+  font-size: 0.53em;
   color: #aab;
   line-height: 1.5;
   flex-shrink: 0;
@@ -193,7 +193,7 @@
   list-style: none; margin: 0; padding: 0;
 }
 .reveal .s-body ul li {
-  font-size: 0.72em;
+  font-size: 0.88em;
   color: var(--text);
   line-height: 1.45;
   margin-bottom: 0.55em;
@@ -206,7 +206,7 @@
   color: var(--blue);
 }
 .reveal .s-body ul li.l2 {
-  font-size: 0.65em;
+  font-size: 0.78em;
   color: var(--muted);
   margin-left: 1em;
 }
@@ -219,7 +219,7 @@
   border-radius: 0 3px 3px 0;
   padding: 9px 12px;
   margin-bottom: 9px;
-  font-size: 0.66em;
+  font-size: 0.84em;
   line-height: 1.4;
   color: var(--text);
 }
@@ -246,7 +246,7 @@
   line-height: 1;
 }
 .stat .l {
-  font-size: 0.55em;
+  font-size: 0.68em;
   color: var(--muted);
   margin-top: 4px;
   line-height: 1.3;
@@ -254,7 +254,7 @@
 
 /* Section label (e.g. "Context / Policy / Findings") */
 .s-label {
-  font-size: 0.52em;
+  font-size: 0.65em;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -609,9 +609,9 @@ const mo     = ['Jan','Feb','Mar','Apr','May','Jun'];
 const brentY = [66.6, 70.8, 101.6, 117.2, 107.1, 98.7];
 const CFG    = { displayModeBar: false, responsive: true };
 
-const FONT = { family: "'Segoe UI', system-ui, Arial, sans-serif", size: 11.5, color: '#333' };
+const FONT = { family: "'Segoe UI', system-ui, Arial, sans-serif", size: 13, color: '#333' };
 const AX   = {
-  tickfont: { size: 11 }, showgrid: false,
+  tickfont: { size: 12.5 }, showgrid: false,
   showline: true, linecolor: '#ccc', linewidth: 1,
   ticks: 'outside', ticklen: 3, tickcolor: '#ddd', zeroline: false,
 };
@@ -625,8 +625,8 @@ const BASE = {
 const BRENT_AX = {
   ...AX, overlaying: 'y', side: 'right',
   range: [50, 145], tickvals: [60, 80, 100, 120, 140],
-  tickfont: { size: 10, color: '#bbb' },
-  title: { text: 'Brent (USD/bbl)', font: { size: 10, color: '#bbb' }, standoff: 2 },
+  tickfont: { size: 11.5, color: '#bbb' },
+  title: { text: 'Brent (USD/bbl)', font: { size: 11.5, color: '#bbb' }, standoff: 2 },
 };
 
 const brentTr = () => ({
@@ -636,9 +636,9 @@ const brentTr = () => ({
   hovertemplate: 'Brent: %{y:.1f} USD/bbl<extra></extra>',
 });
 
-const LEG_TL = { font: { size: 11 }, bgcolor: 'rgba(255,255,255,0.88)', borderwidth: 0, x: 0.01, y: 0.99, xanchor: 'left',  yanchor: 'top' };
-const LEG_TR = { font: { size: 11 }, bgcolor: 'rgba(255,255,255,0.88)', borderwidth: 0, x: 0.99, y: 0.99, xanchor: 'right', yanchor: 'top' };
-const ttl    = t => ({ text: t, font: { size: 11.5, color: '#005695' }, x: 0.02, xanchor: 'left', y: 0.995, yanchor: 'top' });
+const LEG_TL = { font: { size: 12.5 }, bgcolor: 'rgba(255,255,255,0.88)', borderwidth: 0, x: 0.01, y: 0.99, xanchor: 'left',  yanchor: 'top' };
+const LEG_TR = { font: { size: 12.5 }, bgcolor: 'rgba(255,255,255,0.88)', borderwidth: 0, x: 0.99, y: 0.99, xanchor: 'right', yanchor: 'top' };
+const ttl    = t => ({ text: t, font: { size: 13, color: '#005695' }, x: 0.02, xanchor: 'left', y: 0.995, yanchor: 'top' });
 
 /* ── Chart 1: Indonesia all 7 products ──────────────────────────── */
 Plotly.newPlot('c1', [
@@ -655,7 +655,7 @@ Plotly.newPlot('c1', [
   title: ttl('<b>Indonesia</b> — Pump prices (IDR/L)'),
   xaxis: { ...AX },
   yaxis: { ...AXG,
-    title: { text: 'IDR/L', font:{size:10}, standoff:4 },
+    title: { text: 'IDR/L', font:{size:12}, standoff:4 },
     range: [0, 29000],
     tickvals: [0,5000,10000,15000,20000,25000],
     ticktext: ['0','5k','10k','15k','20k','25k'],
@@ -677,7 +677,7 @@ Plotly.newPlot('c2', [
   ...BASE,
   title: ttl('<b>Philippines</b> — Retail prices (PHP/L)'),
   xaxis: { ...AX },
-  yaxis: { ...AXG, title:{text:'PHP/L',font:{size:10},standoff:4}, range:[40,106] },
+  yaxis: { ...AXG, title:{text:'PHP/L',font:{size:12},standoff:4}, range:[40,106] },
   yaxis2: BRENT_AX,
   legend: LEG_TL,
 }, CFG);
@@ -695,7 +695,7 @@ Plotly.newPlot('c3', [
   ...BASE,
   title: ttl('<b>Thailand</b> — Retail prices (THB/L)'),
   xaxis: { ...AX },
-  yaxis: { ...AXG, title:{text:'THB/L',font:{size:10},standoff:4}, range:[25,63], tickvals:[25,35,45,55] },
+  yaxis: { ...AXG, title:{text:'THB/L',font:{size:12},standoff:4}, range:[25,63], tickvals:[25,35,45,55] },
   yaxis2: BRENT_AX,
   legend: LEG_TL,
 }, CFG);
@@ -709,7 +709,7 @@ Plotly.newPlot('c4', [
   title: ttl('<b>Indonesia</b> — Subsidy cost (IDR trillion/month)'),
   barmode: 'stack', bargap: 0.35,
   xaxis: { ...AX },
-  yaxis: { ...AXG, title:{text:'IDR trillion',font:{size:10},standoff:4}, range:[0,70], tickvals:[0,15,30,45,60] },
+  yaxis: { ...AXG, title:{text:'IDR trillion',font:{size:12},standoff:4}, range:[0,70], tickvals:[0,15,30,45,60] },
   legend: LEG_TR,
 }, CFG);
 
@@ -751,7 +751,7 @@ Plotly.newPlot('cp1', [{
   bargap: 0.38,
   xaxis: { ...AX },
   yaxis: { ...AXG,
-    title: { text: 'YoY %', font:{size:10}, standoff:4 },
+    title: { text: 'YoY %', font:{size:12}, standoff:4 },
     range: [0, 4.4], tickvals: [0,1,2,3,4],
   },
   shapes: [
@@ -785,7 +785,7 @@ Plotly.newPlot('cp2', [
   title: ttl('<b>FAO Food Price Index</b> — May 2025–May 2026 (2014–16=100)'),
   xaxis: { ...AX, tickangle: -35, tickfont:{size:9.5} },
   yaxis: { ...AXG,
-    title: { text: 'Index (2014–16=100)', font:{size:10}, standoff:4 },
+    title: { text: 'Index (2014–16=100)', font:{size:12}, standoff:4 },
     range: [104, 138], tickvals: [105,110,115,120,125,130,135],
   },
   shapes: [{
@@ -834,7 +834,7 @@ Plotly.newPlot('cp3', [
   title: ttl('<b>Oil-linked input costs</b> — Price index (Jan 2026 = 100)'),
   xaxis: { ...AX },
   yaxis: { ...AXG,
-    title: { text:'Index (Jan=100)', font:{size:10}, standoff:4 },
+    title: { text:'Index (Jan=100)', font:{size:12}, standoff:4 },
     range: [85, 185], tickvals: [90,100,120,140,160,180],
   },
   shapes: [conflictLine],
@@ -880,7 +880,7 @@ Plotly.newPlot('cp4', [
   title: ttl('<b>Food price inflation</b> — YoY % by item, May 2026'),
   barmode: 'overlay',
   xaxis: { ...AXG,
-    title: { text: 'YoY %', font:{size:10}, standoff:4 },
+    title: { text: 'YoY %', font:{size:12}, standoff:4 },
     range: [0, 11.5], tickvals: [0,2,4,6,8,10],
   },
   yaxis: { ...AX, automargin: true },
@@ -1010,7 +1010,7 @@ Plotly.newPlot('ce2', [
     range: [14800, 18900],
     tickvals: [15000, 16000, 17000, 18000],
     ticktext: ['15,000','16,000','17,000','18,000'],
-    title: { text: 'IDR per USD', font: { size: 10 }, standoff: 4 },
+    title: { text: 'IDR per USD', font: { size: 12 }, standoff: 4 },
   },
   shapes: [conflictLineExt],
   annotations: [
@@ -1064,7 +1064,7 @@ Plotly.newPlot('ce3', [
   bargroupgap: 0.06,
   xaxis: { ...AX, tickfont: { size: 12 } },
   yaxis: { ...AXG,
-    title: { text: '%', font: { size: 10 }, standoff: 4 },
+    title: { text: '%', font: { size: 12 }, standoff: 4 },
     range: [0, 94], tickvals: [0, 20, 40, 60, 80],
   },
   shapes: [{
@@ -1111,11 +1111,11 @@ Plotly.newPlot('ce4', [
   ...BASE,
   title: ttl('<b>Coverage rate by expenditure decile</b> — % of households enrolled'),
   xaxis: { ...AX,
-    title: { text: 'Decile  (1 = poorest)', font: { size: 10 }, standoff: 4 },
+    title: { text: 'Decile  (1 = poorest)', font: { size: 12 }, standoff: 4 },
     tickvals: [1,2,3,4,5,6,7,8,9,10], dtick: 1,
   },
   yaxis: { ...AXG,
-    title: { text: '% enrolled', font: { size: 10 }, standoff: 4 },
+    title: { text: '% enrolled', font: { size: 12 }, standoff: 4 },
     range: [0, 70], tickvals: [0, 20, 40, 60],
   },
   legend: LEG_TR,
@@ -1168,11 +1168,11 @@ Plotly.newPlot('ce5', [
   barmode: 'group',
   bargap: 0.22,
   xaxis: { ...AX,
-    title: { text: 'Decile  (1 = poorest)', font:{size:10}, standoff:4 },
+    title: { text: 'Decile  (1 = poorest)', font:{size:12}, standoff:4 },
     tickvals: [1,2,3,4,5,6,7,8,9,10], dtick: 1,
   },
   yaxis: { ...AXG,
-    title: { text: '% receiving', font:{size:10}, standoff:4 },
+    title: { text: '% receiving', font:{size:12}, standoff:4 },
     range: [0, 86], tickvals: [0,20,40,60,80],
   },
   shapes: [
@@ -1220,7 +1220,7 @@ Plotly.newPlot('ce6', [
   bargap: 0.25, bargroupgap: 0.06,
   xaxis: { ...AX, tickfont:{ size:11.5 } },
   yaxis: { ...AXG,
-    title: { text:'%', font:{size:10}, standoff:4 },
+    title: { text:'%', font:{size:12}, standoff:4 },
     range: [0, 90], tickvals: [0,20,40,60,80],
   },
   shapes: [

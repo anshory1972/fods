@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAO Webinar 2026 — Arief Yusuf</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.css">
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js" charset="utf-8"></script>
+<style>
+
+/* ═══════════════════════════════════════════════════════════════════
+   VARIABLES & RESET
+════════════════════════════════════════════════════════════════════ */
+:root {
+  --blue:      #005695;
+  --blue-mid:  #0077b6;
+  --blue-pale: #e8f4fb;
+  --teal:      #0a8a8a;
+  --text:      #1a2533;
+  --muted:     #6b7a8d;
+  --rule:      #dde8f0;
+  --bar-h:     5px;
+}
+
+.reveal-viewport { background: #f0f4f8; }
+.reveal          { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; }
+.reveal .slides  { text-align: left; }
+
+/* suppress reveal defaults that bleed through */
+.reveal h1,.reveal h2,.reveal h3 {
+  font-family: inherit; text-transform: none; letter-spacing: 0; margin: 0;
+}
+.reveal p { margin: 0; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   SLIDE SHELL  (white card, top accent bar)
+════════════════════════════════════════════════════════════════════ */
+.reveal .slides section {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.08);
+  height: 100%;
+  padding: 0;
+  display: flex !important;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* top accent bar */
+.s-bar {
+  height: var(--bar-h);
+  background: linear-gradient(90deg, var(--blue) 0%, var(--teal) 100%);
+  flex-shrink: 0;
+}
+
+/* ── Slide header ── */
+.s-head {
+  padding: 11px 28px 9px;
+  border-bottom: 1px solid var(--rule);
+  flex-shrink: 0;
+}
+.s-head h2 {
+  font-size: 1.15em;
+  font-weight: 700;
+  color: var(--blue);
+  line-height: 1.2;
+}
+.s-head .sub {
+  font-size: 0.62em;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+/* ── Slide body ── */
+.s-body {
+  flex: 1;
+  min-height: 0;
+  padding: 12px 28px 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Source note ── */
+.s-foot {
+  padding: 4px 28px 6px;
+  border-top: 1px solid var(--rule);
+  font-size: 0.42em;
+  color: #aab;
+  line-height: 1.5;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   TITLE SLIDE
+════════════════════════════════════════════════════════════════════ */
+.reveal .slides section.s-title {
+  background: var(--blue);
+  color: #fff;
+}
+.s-title .s-bar {
+  background: rgba(255,255,255,0.18);
+}
+.s-title .t-body {
+  flex: 1; min-height: 0;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 20px 52px;
+}
+.s-title .t-label {
+  font-size: 0.58em;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.65;
+  margin-bottom: 14px;
+}
+.s-title h1 {
+  font-size: 1.32em;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.s-title .t-subtitle {
+  font-size: 0.72em;
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+.s-title .t-divider {
+  width: 44px; height: 2px;
+  background: rgba(255,255,255,0.4);
+  margin-bottom: 18px;
+}
+.s-title .t-presenter strong {
+  display: block;
+  font-size: 0.78em;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.s-title .t-presenter span {
+  font-size: 0.62em;
+  opacity: 0.75;
+}
+.s-title .t-meta {
+  font-size: 0.6em;
+  opacity: 0.6;
+  margin-top: 10px;
+}
+.s-title .t-foot {
+  padding: 8px 52px 12px;
+  border-top: 1px solid rgba(255,255,255,0.18);
+  display: flex; gap: 24px;
+  font-size: 0.5em;
+  opacity: 0.65;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   LAYOUT HELPERS
+════════════════════════════════════════════════════════════════════ */
+
+/* 2-column equal */
+.l-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  flex: 1; min-height: 0;
+}
+/* 2-column 3:2 */
+.l-2col-wide {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 18px;
+  flex: 1; min-height: 0;
+}
+/* 2×2 chart grid */
+.l-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 8px;
+  flex: 1; min-height: 0;
+}
+.l-charts .cw { width: 100%; height: 100%; }
+/* full-width single chart */
+.l-chart1 { flex: 1; min-height: 0; width: 100%; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   TYPOGRAPHY COMPONENTS
+════════════════════════════════════════════════════════════════════ */
+
+/* Bullets */
+.reveal .s-body ul {
+  list-style: none; margin: 0; padding: 0;
+}
+.reveal .s-body ul li {
+  font-size: 0.72em;
+  color: var(--text);
+  line-height: 1.45;
+  margin-bottom: 0.55em;
+  padding-left: 1.1em;
+  position: relative;
+}
+.reveal .s-body ul li::before {
+  content: '▸';
+  position: absolute; left: 0;
+  color: var(--blue);
+}
+.reveal .s-body ul li.l2 {
+  font-size: 0.65em;
+  color: var(--muted);
+  margin-left: 1em;
+}
+.reveal .s-body ul li.l2::before { content: '·'; }
+
+/* Highlight box */
+.hbox {
+  background: var(--blue-pale);
+  border-left: 3px solid var(--blue);
+  border-radius: 0 3px 3px 0;
+  padding: 9px 12px;
+  margin-bottom: 9px;
+  font-size: 0.66em;
+  line-height: 1.4;
+  color: var(--text);
+}
+.hbox strong { color: var(--blue); }
+.hbox.teal   { border-color: var(--teal); background: #e8f6f6; }
+.hbox.teal strong { color: var(--teal); }
+
+/* Stat row */
+.stat-row {
+  display: flex; gap: 10px;
+  margin-bottom: 10px;
+}
+.stat {
+  flex: 1;
+  background: var(--blue-pale);
+  border-radius: 6px;
+  padding: 10px 12px;
+  text-align: center;
+}
+.stat .n {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--blue);
+  line-height: 1;
+}
+.stat .l {
+  font-size: 0.55em;
+  color: var(--muted);
+  margin-top: 4px;
+  line-height: 1.3;
+}
+
+/* Section label (e.g. "Context / Policy / Findings") */
+.s-label {
+  font-size: 0.52em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  border-radius: 3px;
+  padding: 2px 7px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   TABLE
+════════════════════════════════════════════════════════════════════ */
+.reveal table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.62em;
+}
+.reveal table thead th {
+  background: var(--blue);
+  color: #fff;
+  padding: 7px 10px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1em;
+  border: none;
+}
+.reveal table thead th.r { text-align: right; }
+.reveal table tbody td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--text);
+}
+.reveal table tbody td.r { text-align: right; }
+.reveal table tbody tr:nth-child(even) td { background: var(--blue-pale); }
+.reveal table tfoot td {
+  padding: 6px 10px;
+  font-weight: 600;
+  color: var(--blue);
+  border-top: 2px solid var(--blue);
+  font-size: 1em;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   REVEAL CHROME
+════════════════════════════════════════════════════════════════════ */
+.reveal .progress        { background: rgba(0,0,0,0.1); }
+.reveal .progress span   { background: var(--blue); }
+.reveal .slide-number    {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 11px; color: var(--muted);
+  background: transparent; bottom: 10px; right: 14px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  SLIDE 1 — TITLE                                            ║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+<section class="s-title">
+  <div class="s-bar"></div>
+  <div class="t-body">
+    <div class="t-label">FAO · socialprotection.org Webinar &nbsp;·&nbsp; 11 June 2026</div>
+    <h1>The 2026 Middle East Conflict and Its Impacts<br>on Poverty, Food Insecurity &amp; Smallholder Production</h1>
+    <div class="t-subtitle">How Can Social Protection Systems Respond?</div>
+    <div class="t-divider"></div>
+    <div class="t-presenter">
+      <strong>Arief Yusuf</strong>
+      <span>Universitas Padjadjaran (UNPAD) &nbsp;·&nbsp; Indonesia</span>
+    </div>
+    <div class="t-meta">
+      Country Case Study: Indonesia's Social Protection Response to Energy Price Shocks
+    </div>
+  </div>
+  <div class="t-foot">
+    <span>11 June 2026 &nbsp;·&nbsp; 13:30 CEST / 19:30 WIB</span>
+    <span>Moderator: Mark James Johnson (FAO)</span>
+    <span>Co-organized by FAO, GNAFC &amp; socialprotection.org</span>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  SLIDE 2 — OUTLINE                                          ║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+<section>
+  <div class="s-bar"></div>
+  <div class="s-head">
+    <h2>Outline</h2>
+    <div class="sub">Indonesia country case study · 10 minutes</div>
+  </div>
+  <div class="s-body">
+    <div class="l-2col">
+      <div>
+        <div class="hbox"><strong>1. The shock</strong><br>Oil price trajectory since conflict onset (Feb 28) — Brent +57% to peak; regional fuel price response</div>
+        <div class="hbox"><strong>2. Transmission channels</strong><br>Fuel → fertilizer (urea +75%); transport costs; food retail margin; domestic vs world rice price divergence</div>
+        <div class="hbox"><strong>3. Indonesia's subsidy buffer</strong><br>Subsidised prices (Pertalite, Solar) frozen all 2026; non-subsidised pass-through delayed ~100 days</div>
+      </div>
+      <div>
+        <div class="hbox teal"><strong>4. Fiscal cost of the buffer</strong><br>Subsidy burden Rp 46–60T/month; total Jan–Jun ~Rp 333T; migration risk from non-subsidised users</div>
+        <div class="hbox teal"><strong>5. Distributional implications</strong><br>Who benefits from the freeze? Coverage gaps; rural smallholder exposure; food price pressure on poor households</div>
+        <div class="hbox teal"><strong>6. Is it enough?</strong><br>Subsidy as first-line SP response; what targeted instruments are still needed?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  SLIDE 3 — FUEL PRICE CHARTS (2×2)                         ║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+<section id="s-fuel">
+  <div class="s-bar"></div>
+  <div class="s-head">
+    <h2>Fuel Price Dynamics &amp; Subsidy Burden</h2>
+    <div class="sub">Indonesia, Philippines, Thailand &nbsp;·&nbsp; January–June 2026 &nbsp;·&nbsp; Monthly averages</div>
+  </div>
+  <div class="s-body" style="padding-bottom:4px;">
+    <div class="l-charts">
+      <div id="c1" class="cw"></div>
+      <div id="c2" class="cw"></div>
+      <div id="c3" class="cw"></div>
+      <div id="c4" class="cw"></div>
+    </div>
+  </div>
+  <div class="s-foot">
+    Brent: EIA daily (monthly avg). &nbsp;
+    Indonesia: Pertamina/CNBC Indonesia — Pertalite &amp; Solar frozen all 2026; Turbo/Dexlite/Dex raised Apr 18; Pertamax/Green95 raised Jun 10. &nbsp;
+    Philippines: globalpetrolprices.com + CNBC Asia (anchors: Apr 13 peak RON95 PHP 96.50; Jun 8 PHP 75.90/76.20; series interpolated). &nbsp;
+    Thailand: globalpetrolprices.com, oil-fund smoothed (May 18 RON95 peak THB 54.76; Jun 8 THB 52.99/40.36; interp.). &nbsp;
+    Subsidy cost: author est. from ESDM consumption &amp; gap data.
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  SLIDE 4 — PASS-THROUGH IMPACTS                             ║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+<section id="s-passthrough">
+  <div class="s-bar"></div>
+  <div class="s-head">
+    <h2>Pass-through: Prices Beyond the Pump</h2>
+    <div class="sub">Inflation, food prices &amp; commodity costs &nbsp;·&nbsp; Indonesia &amp; global &nbsp;·&nbsp; 2026</div>
+  </div>
+  <div class="s-body" style="padding-bottom:4px;">
+    <div class="l-charts">
+      <div id="cp1" class="cw"></div>
+      <div id="cp2" class="cw"></div>
+      <div id="cp3" class="cw"></div>
+      <div id="cp4" class="cw"></div>
+    </div>
+  </div>
+  <div class="s-foot">
+    Indonesia CPI: BPS (YoY%; Mar 2026 interpolated). &nbsp;
+    FAO Food Price Index: FAO.org (2014–16=100; Feb &amp; Apr 2026 interpolated). &nbsp;
+    Urea: IndexMundi (Jan–Mar confirmed; Apr–Jun estimated). &nbsp;
+    Plastics: naphtha spot price proxy — TradingEconomics (Jun 10 $739/MT confirmed; Jan–May estimated from Brent correlation). &nbsp;
+    Engine oil: BPS CPI lubricants component (May 2026 +3.85% YoY confirmed; series estimated; analyst projection +15–20%). &nbsp;
+    Food prices: rice grade YoY estimated from BPS weekly retail trend vs May 2025 baseline (confirmed aggregate retail avg +4.55% YoY, BPS May 2026); other staples estimated from BPS CPI food component drivers (fish, chicken, eggs confirmed as leading drivers; cooking oil, tofu, sugar from CPI subcomponents).
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  SLIDE 5 — EXTERNAL BALANCE & FISCAL CONFIDENCE CRISIS      ║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+<section id="s-external">
+  <div class="s-bar"></div>
+  <div class="s-head">
+    <h2>External Pressure &amp; Fiscal Confidence Crisis</h2>
+    <div class="sub">IHSG equity selloff &amp; IDR depreciation — imported food inflation risk &nbsp;·&nbsp; Indonesia Jan 2025–Jun 2026</div>
+  </div>
+  <div class="s-body" style="padding-bottom:4px; gap:8px;">
+    <div style="flex:1; min-height:0; display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+      <div id="ce1" style="width:100%; height:100%;"></div>
+      <div id="ce2" style="width:100%; height:100%;"></div>
+    </div>
+    <div class="stat-row" style="flex-shrink:0; margin-bottom:0;">
+      <div class="stat" style="background:#fef2f2;">
+        <div class="n" style="color:#dc2626;">−35%</div>
+        <div class="l">IHSG from Dec 2025 peak<br>8,647 → 5,595</div>
+      </div>
+      <div class="stat" style="background:#fef2f2;">
+        <div class="n" style="color:#dc2626;">+7.5%</div>
+        <div class="l">IDR weaker vs USD<br>Jan 2026 → Jun 2026</div>
+      </div>
+      <div class="stat" style="flex:2; text-align:left; background:#fffbeb;">
+        <div class="n" style="font-size:0.78em; color:#b45309; font-weight:600; line-height:1.2;">Imported food inflation risk</div>
+        <div class="l" style="font-size:0.62em; margin-top:5px;">Indonesia imports all wheat, ~75% sugar, ~60% soybean &amp; all cotton — a weaker IDR directly amplifies food import costs. With non-subsidised fuel prices now rising, margin pressure on food retailers is intensifying further.</div>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot">
+    IHSG &amp; IDR/USD: Yahoo Finance via author's dashboard (monthly close Jan 2025–Jun 2026; daily data May–Jun 2026). &nbsp;
+    Fiscal confidence pressures: fuel subsidy burden Rp ~60T/month + flagship programmes (Makan Bergizi Gratis, IKN relocation). &nbsp;
+    Indonesia food import dependency: BPS/Kementan (wheat 100% imported; sugar ~75%; soybean ~60%).
+  </div>
+</section>
+
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  SLIDE 6 — TARGETING QUALITY: INCLUSION & EXCLUSION ERRORS  ║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+<section id="s-targeting">
+  <div class="s-bar"></div>
+  <div class="s-head">
+    <h2>Targeting Quality of Direct Social Assistance</h2>
+    <div class="sub">Inclusion &amp; exclusion errors — PKH, BPNT, PBI &nbsp;·&nbsp; Source: Susenas March 2015</div>
+  </div>
+  <div class="s-body" style="padding-bottom:4px; gap:8px;">
+    <div style="flex:1; min-height:0; display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+      <div id="ce3" style="width:100%; height:100%;"></div>
+      <div id="ce4" style="width:100%; height:100%;"></div>
+    </div>
+    <div class="stat-row" style="flex-shrink:0; margin-bottom:0;">
+      <div class="stat" style="background:#fef2f2;">
+        <div class="n" style="color:#dc2626; font-size:1.05em;">EE 77.6% · IE 43.6%</div>
+        <div class="l">PKH — conditional cash transfer</div>
+      </div>
+      <div class="stat" style="background:#fef2f2;">
+        <div class="n" style="color:#dc2626; font-size:1.05em;">EE 74.4% · IE 36.1%</div>
+        <div class="l">BPNT — non-cash food card</div>
+      </div>
+      <div class="stat" style="background:#fffbeb;">
+        <div class="n" style="color:#b45309; font-size:1.05em;">EE 42.6% · IE 40.9%</div>
+        <div class="l">PBI — health insurance subsidy (JKN)</div>
+      </div>
+      <div class="stat" style="background:#f0f9f0; flex:1.2;">
+        <div class="n" style="font-size:0.78em; color:#166534; font-weight:600; line-height:1.25;">Shock response gap</div>
+        <div class="l" style="font-size:0.62em; margin-top:4px;">High exclusion errors mean newly vulnerable households — not enrolled pre-crisis — cannot be quickly reached through existing SP channels when a shock hits.</div>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot">
+    EE (exclusion error / under-coverage): share of eligible poor households <em>not</em> receiving the programme. &nbsp;
+    IE (inclusion error / leakage): share of recipients who are non-poor. &nbsp;
+    Source: Susenas March 2015; calculations by author.
+  </div>
+</section>
+
+</div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<script>
+/* ── Reveal init ─────────────────────────────────────────────────── */
+Reveal.initialize({
+  width: 1280, height: 720,
+  margin: 0.03,
+  minScale: 0.2, maxScale: 2.0,
+  controls: false,
+  progress: true,
+  slideNumber: 'c / t',
+  hash: true,
+  transition: 'fade',
+  transitionSpeed: 'fast',
+  backgroundTransition: 'none',
+});
+
+/* ── Plotly shared config ────────────────────────────────────────── */
+const mo     = ['Jan','Feb','Mar','Apr','May','Jun'];
+const brentY = [66.6, 70.8, 101.6, 117.2, 107.1, 98.7];
+const CFG    = { displayModeBar: false, responsive: true };
+
+const FONT = { family: "'Segoe UI', system-ui, Arial, sans-serif", size: 11.5, color: '#333' };
+const AX   = {
+  tickfont: { size: 11 }, showgrid: false,
+  showline: true, linecolor: '#ccc', linewidth: 1,
+  ticks: 'outside', ticklen: 3, tickcolor: '#ddd', zeroline: false,
+};
+const AXG  = { ...AX, showgrid: true, gridcolor: '#f0f4f8' };
+const BASE = {
+  paper_bgcolor: '#fff', plot_bgcolor: '#fff',
+  font: FONT,
+  margin: { l: 54, r: 54, t: 30, b: 34, pad: 0 },
+};
+
+const BRENT_AX = {
+  ...AX, overlaying: 'y', side: 'right',
+  range: [50, 145], tickvals: [60, 80, 100, 120, 140],
+  tickfont: { size: 10, color: '#bbb' },
+  title: { text: 'Brent (USD/bbl)', font: { size: 10, color: '#bbb' }, standoff: 2 },
+};
+
+const brentTr = () => ({
+  x: mo, y: brentY, name: 'Brent', yaxis: 'y2',
+  type: 'scatter', mode: 'lines',
+  line: { color: '#ccc', width: 1.3, dash: 'dash' },
+  hovertemplate: 'Brent: %{y:.1f} USD/bbl<extra></extra>',
+});
+
+const LEG_TL = { font: { size: 11 }, bgcolor: 'rgba(255,255,255,0.88)', borderwidth: 0, x: 0.01, y: 0.99, xanchor: 'left',  yanchor: 'top' };
+const LEG_TR = { font: { size: 11 }, bgcolor: 'rgba(255,255,255,0.88)', borderwidth: 0, x: 0.99, y: 0.99, xanchor: 'right', yanchor: 'top' };
+const ttl    = t => ({ text: t, font: { size: 11.5, color: '#005695' }, x: 0.02, xanchor: 'left', y: 0.995, yanchor: 'top' });
+
+/* ── Chart 1: Indonesia all 7 products ──────────────────────────── */
+Plotly.newPlot('c1', [
+  { x:mo, y:[10000,10000,10000,10000,10000,10000], name:'Pertalite', type:'scatter', mode:'lines', line:{color:'#1A5CB4',width:2.2},  hovertemplate:'Pertalite: Rp %{y:,}<extra></extra>' },
+  { x:mo, y:[6800, 6800, 6800, 6800, 6800, 6800],  name:'Solar',     type:'scatter', mode:'lines', line:{color:'#1A9946',width:2.2},  hovertemplate:'Solar: Rp %{y:,}<extra></extra>' },
+  { x:mo, y:[12300,12300,12300,12300,12300,16250],  name:'Pertamax',  type:'scatter', mode:'lines', line:{color:'#D97706',width:1.6},  hovertemplate:'Pertamax: Rp %{y:,}<extra></extra>' },
+  { x:mo, y:[12900,12900,12900,12900,12900,17000],  name:'Green95',   type:'scatter', mode:'lines', line:{color:'#5B8A00',width:1.4, dash:'dot'}, hovertemplate:'Green95: Rp %{y:,}<extra></extra>' },
+  { x:mo, y:[18800,18800,18800,20750,20750,20750],  name:'Turbo',     type:'scatter', mode:'lines', line:{color:'#C0392B',width:1.3},  hovertemplate:'Turbo: Rp %{y:,}<extra></extra>' },
+  { x:mo, y:[19600,19600,19600,23000,23000,23000],  name:'Dexlite',   type:'scatter', mode:'lines', line:{color:'#7B3FA0',width:1.3, dash:'dot'}, hovertemplate:'Dexlite: Rp %{y:,}<extra></extra>' },
+  { x:mo, y:[21200,21200,21200,24800,24800,24800],  name:'Dex',       type:'scatter', mode:'lines', line:{color:'#934F00',width:1.3},  hovertemplate:'Dex: Rp %{y:,}<extra></extra>' },
+  brentTr(),
+], {
+  ...BASE,
+  title: ttl('<b>Indonesia</b> — Pump prices (IDR/L)'),
+  xaxis: { ...AX },
+  yaxis: { ...AXG,
+    title: { text: 'IDR/L', font:{size:10}, standoff:4 },
+    range: [0, 29000],
+    tickvals: [0,5000,10000,15000,20000,25000],
+    ticktext: ['0','5k','10k','15k','20k','25k'],
+  },
+  yaxis2: BRENT_AX,
+  legend: LEG_TL,
+}, CFG);
+
+/* ── Chart 2: Philippines ────────────────────────────────────────── */
+Plotly.newPlot('c2', [
+  { x:mo, y:[62.0,66.0,80.0,92.0,84.0,75.9], name:'RON95',  type:'scatter', mode:'lines+markers',
+    line:{color:'#2563EB',width:1.8}, marker:{color:'#2563EB',size:5,symbol:'circle'},
+    hovertemplate:'RON95: PHP %{y:.2f}<extra></extra>' },
+  { x:mo, y:[62.0,67.0,81.0,93.0,85.0,76.2], name:'Diesel', type:'scatter', mode:'lines+markers',
+    line:{color:'#DC2626',width:1.8}, marker:{color:'#DC2626',size:5,symbol:'square'},
+    hovertemplate:'Diesel: PHP %{y:.2f}<extra></extra>' },
+  brentTr(),
+], {
+  ...BASE,
+  title: ttl('<b>Philippines</b> — Retail prices (PHP/L)'),
+  xaxis: { ...AX },
+  yaxis: { ...AXG, title:{text:'PHP/L',font:{size:10},standoff:4}, range:[40,106] },
+  yaxis2: BRENT_AX,
+  legend: LEG_TL,
+}, CFG);
+
+/* ── Chart 3: Thailand ───────────────────────────────────────────── */
+Plotly.newPlot('c3', [
+  { x:mo, y:[44.0,46.0,49.5,53.5,54.8,53.0], name:'RON95',  type:'scatter', mode:'lines+markers',
+    line:{color:'#2563EB',width:1.8}, marker:{color:'#2563EB',size:5,symbol:'circle'},
+    hovertemplate:'RON95: THB %{y:.1f}<extra></extra>' },
+  { x:mo, y:[33.0,35.0,40.0,48.7,44.0,40.4], name:'Diesel', type:'scatter', mode:'lines+markers',
+    line:{color:'#DC2626',width:1.8}, marker:{color:'#DC2626',size:5,symbol:'square'},
+    hovertemplate:'Diesel: THB %{y:.1f}<extra></extra>' },
+  brentTr(),
+], {
+  ...BASE,
+  title: ttl('<b>Thailand</b> — Retail prices (THB/L)'),
+  xaxis: { ...AX },
+  yaxis: { ...AXG, title:{text:'THB/L',font:{size:10},standoff:4}, range:[25,63], tickvals:[25,35,45,55] },
+  yaxis2: BRENT_AX,
+  legend: LEG_TL,
+}, CFG);
+
+/* ── Chart 4: Indonesia subsidy ──────────────────────────────────── */
+Plotly.newPlot('c4', [
+  { x:mo, y:[9.5, 11.2,14.4,15.6,15.2,15.6], name:'Pertalite',       type:'bar', marker:{color:'rgba(26,92,180,0.72)'},  hovertemplate:'Pertalite: Rp %{y:.1f}T<extra></extra>' },
+  { x:mo, y:[36.8,39.5,43.1,44.2,43.4,44.2], name:'Solar / Biosolar', type:'bar', marker:{color:'rgba(10,138,138,0.72)'}, hovertemplate:'Solar: Rp %{y:.1f}T<extra></extra>' },
+], {
+  ...BASE,
+  title: ttl('<b>Indonesia</b> — Subsidy cost (IDR trillion/month)'),
+  barmode: 'stack', bargap: 0.35,
+  xaxis: { ...AX },
+  yaxis: { ...AXG, title:{text:'IDR trillion',font:{size:10},standoff:4}, range:[0,70], tickvals:[0,15,30,45,60] },
+  legend: LEG_TR,
+}, CFG);
+
+/* ══════════════════════════════════════════════════════════════════
+   SLIDE 4 — Pass-through charts
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Shared: vertical "conflict onset" marker at Feb/Mar boundary (x=1.5) */
+const conflictLine = {
+  type: 'line', xref: 'x', yref: 'paper',
+  x0: 1.5, x1: 1.5, y0: 0, y1: 1,
+  line: { color: '#ef4444', width: 1, dash: 'dot' },
+};
+const conflictLabel = (xanchor = 'left') => ({
+  xref: 'x', yref: 'paper',
+  x: xanchor === 'left' ? 1.58 : 1.42,
+  y: 0.97, showarrow: false,
+  text: 'Conflict<br>onset',
+  font: { size: 8, color: '#ef4444' },
+  align: xanchor, xanchor,
+});
+
+/* ── cp1: Indonesia CPI bar chart ───────────────────────────────── */
+Plotly.newPlot('cp1', [{
+  x: ['Jan','Feb','Mar','Apr','May'],
+  y: [3.55, 2.40, 2.44, 2.42, 3.08],
+  type: 'bar',
+  marker: {
+    color: ['#3B82F6','#3B82F6','#93C5FD','#93C5FD','#1D4ED8'],
+  },
+  text: ['3.55%','2.40%','2.44%','2.42%','3.08%'],
+  textposition: 'outside',
+  textfont: { size: 10, color: '#444' },
+  hovertemplate: '%{x} 2026: %{y:.2f}% YoY<extra></extra>',
+  showlegend: false,
+}], {
+  ...BASE,
+  title: ttl('<b>Indonesia CPI</b> — Headline inflation (YoY %)'),
+  bargap: 0.38,
+  xaxis: { ...AX },
+  yaxis: { ...AXG,
+    title: { text: 'YoY %', font:{size:10}, standoff:4 },
+    range: [0, 4.4], tickvals: [0,1,2,3,4],
+  },
+  shapes: [
+    conflictLine,
+    { type:'line', xref:'paper', yref:'y', x0:0, x1:1, y0:3.5, y1:3.5,
+      line:{ color:'#f59e0b', width:1, dash:'dash' } },
+  ],
+  annotations: [
+    conflictLabel(),
+    { xref:'paper', yref:'y', x:1.01, y:3.5, showarrow:false,
+      text:'BI upper<br>bound', font:{size:8, color:'#f59e0b'}, xanchor:'left' },
+  ],
+}, CFG);
+
+/* ── cp2: FAO Food Price Index ──────────────────────────────────── */
+Plotly.newPlot('cp2', [
+  {
+    x: ['May 25','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan 26','Feb','Mar','Apr','May'],
+    y: [112.0, 111.5, 111.0, 110.8, 110.5, 110.2, 110.5, 111.0, 111.0, 116.0, 128.5, 130.0, 130.8],
+    name: 'Overall FPI', type:'scatter', mode:'lines+markers',
+    line: { color:'#D97706', width:2 },
+    marker: {
+      color: Array(8).fill('#D97706').concat(['#D97706','rgba(217,119,6,0.4)','#D97706','rgba(217,119,6,0.4)','#D97706']),
+      size: 5,
+    },
+    fill: 'tozeroy', fillcolor: 'rgba(217,119,6,0.06)',
+    hovertemplate: '%{x}: %{y:.1f}<extra></extra>',
+  },
+], {
+  ...BASE,
+  title: ttl('<b>FAO Food Price Index</b> — May 2025–May 2026 (2014–16=100)'),
+  xaxis: { ...AX, tickangle: -35, tickfont:{size:9.5} },
+  yaxis: { ...AXG,
+    title: { text: 'Index (2014–16=100)', font:{size:10}, standoff:4 },
+    range: [104, 138], tickvals: [105,110,115,120,125,130,135],
+  },
+  shapes: [{
+    type:'line', xref:'x', yref:'paper',
+    x0: 8.5, x1: 8.5, y0: 0, y1: 1,
+    line: { color:'#ef4444', width:1, dash:'dot' },
+  }],
+  annotations: [{
+    xref:'x', yref:'paper', x: 8.6, y: 0.97, showarrow:false,
+    text:'Conflict<br>onset', font:{size:8,color:'#ef4444'}, xanchor:'left',
+  }],
+  showlegend: false,
+}, CFG);
+
+/* ── cp3: Commodity prices indexed to Jan 2026 = 100 ───────────── */
+// Urea:       Jan $415 · Feb $472 · Mar $726 · Apr est $580 · May est $470 · Jun $398
+// Plastics:   naphtha proxy — Jan est $580 · Feb $615 · Mar $855 · Apr $950 · May $870 · Jun $739 (confirmed TradingEconomics Jun 10)
+// Engine oil: BPS CPI lubricants +3.85% YoY in May; modest pass-through so far; analyst +15–20% projected
+Plotly.newPlot('cp3', [
+  {
+    x: ['Jan','Feb','Mar','Apr *','May *','Jun *'],
+    y: [100, 113.7, 175.0, 139.8, 113.3, 95.9],
+    name: 'Urea (fertiliser)', type:'scatter', mode:'lines+markers',
+    line: { color:'#16A34A', width:1.8 },
+    marker: { color:'#16A34A', size:5, symbol:'circle' },
+    hovertemplate: 'Urea: %{y:.1f}<extra></extra>',
+  },
+  {
+    x: ['Jan','Feb','Mar','Apr *','May *','Jun *'],
+    y: [100, 106.0, 147.4, 163.8, 150.0, 127.4],
+    name: 'Plastics (naphtha proxy)', type:'scatter', mode:'lines+markers',
+    line: { color:'#7C3AED', width:1.8 },
+    marker: { color:'#7C3AED', size:5, symbol:'square' },
+    hovertemplate: 'Plastics/naphtha: %{y:.1f}<extra></extra>',
+  },
+  {
+    x: ['Jan','Feb','Mar','Apr *','May *','Jun *'],
+    y: [100, 100.5, 101.8, 103.2, 103.9, 107.0],
+    name: 'Engine oil (lubricants)', type:'scatter', mode:'lines+markers',
+    line: { color:'#EA580C', width:1.8, dash:'dot' },
+    marker: { color:'#EA580C', size:5, symbol:'diamond' },
+    hovertemplate: 'Engine oil: %{y:.1f}<extra></extra>',
+  },
+], {
+  ...BASE,
+  title: ttl('<b>Oil-linked input costs</b> — Price index (Jan 2026 = 100)'),
+  xaxis: { ...AX },
+  yaxis: { ...AXG,
+    title: { text:'Index (Jan=100)', font:{size:10}, standoff:4 },
+    range: [85, 185], tickvals: [90,100,120,140,160,180],
+  },
+  shapes: [conflictLine],
+  annotations: [
+    conflictLabel(),
+    { xref:'paper', yref:'paper', x:0.98, y:0.04, showarrow:false,
+      text:'* estimated &nbsp;|&nbsp; engine oil: BPS CPI lubricants May +3.85% YoY; analyst projects +15–20%',
+      font:{size:8.5, color:'#999'}, xanchor:'right' },
+  ],
+  legend: LEG_TR,
+}, CFG);
+
+/* ── cp4: YoY% for rice grades + key staples (May 2026) ─────────── */
+// Rice grade YoY: derived from BPS weekly retail trend vs est. May 2025 baseline
+//   confirmed aggregate retail avg +4.55% YoY (BPS May 2026)
+// Other staples: BPS CPI food component drivers (Apr–May 2026)
+//   fish, chicken, eggs confirmed as top drivers; cooking oil, sugar from CPI subcomponents
+const riceItems   = ['Super II (premium)','Super I (premium)','Medium II','Medium I','Economy (bawah)'];
+const riceYoY     = [3.2, 3.8, 4.5, 5.2, 6.5];
+const stapleItems = ['Sugar','Cooking oil','Tofu / tempe','Eggs','Broiler chicken','Fresh fish'];
+const stapleYoY   = [1.6, 4.3, 5.7, 6.1, 7.6, 9.2];
+
+Plotly.newPlot('cp4', [
+  {
+    y: riceItems, x: riceYoY,
+    name: 'Rice grades', type: 'bar', orientation: 'h',
+    marker: { color: '#2563EB', opacity: 0.82 },
+    text: riceYoY.map(v => v.toFixed(1) + '%'),
+    textposition: 'outside', textfont: { size: 10, color: '#444' },
+    hovertemplate: '%{y}: %{x:.1f}% YoY<extra></extra>',
+  },
+  {
+    y: stapleItems, x: stapleYoY,
+    name: 'Other staples', type: 'bar', orientation: 'h',
+    marker: { color: '#EA580C', opacity: 0.82 },
+    text: stapleYoY.map(v => v.toFixed(1) + '%'),
+    textposition: 'outside', textfont: { size: 10, color: '#444' },
+    hovertemplate: '%{y}: %{x:.1f}% YoY<extra></extra>',
+  },
+], {
+  ...BASE,
+  margin: { ...BASE.margin, l: 115 },
+  title: ttl('<b>Food price inflation</b> — YoY % by item, May 2026'),
+  barmode: 'overlay',
+  xaxis: { ...AXG,
+    title: { text: 'YoY %', font:{size:10}, standoff:4 },
+    range: [0, 11.5], tickvals: [0,2,4,6,8,10],
+  },
+  yaxis: { ...AX, automargin: true },
+  shapes: [{
+    type:'line', xref:'x', yref:'paper',
+    x0: 3.06, x1: 3.06, y0: 0, y1: 1,
+    line: { color:'#6B7280', width:1.2, dash:'dash' },
+  }],
+  annotations: [{
+    xref:'x', yref:'paper', x: 3.14, y: 0.99, showarrow: false,
+    text: 'Food CPI<br>Apr 3.06%', font:{ size:8.5, color:'#6B7280' }, xanchor:'left',
+  }],
+  legend: { ...LEG_TR, y:0.02, yanchor:'bottom' },
+}, CFG);
+
+/* ══════════════════════════════════════════════════════════════════
+   SLIDE 5 — External Balance & Fiscal Confidence Crisis
+   Source: financial_3y.json (monthly close, Jan 2025–Jun 2026)
+   ══════════════════════════════════════════════════════════════════ */
+
+/* All 18 months as unique labels — both traces share this full array
+   and use null-padding so Plotly aligns categories correctly.
+   Conflict onset: between 'Feb 26' (index 13) and 'Mar 26' (index 14) */
+const moExt = ['Jan 25','Feb 25','Mar 25','Apr 25','May 25','Jun 25',
+               'Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25',
+               'Jan 26','Feb 26','Mar 26','Apr 26','May 26','Jun 26'];
+
+const ihsgMo = [7109.2,6270.6,6510.62,6766.79,7175.82,6927.68,
+                7484.34,7830.49,8061.06,8163.88,8508.71,8646.94,
+                8329.61,8235.49,7048.22,6956.80,6127.38,5594.77];
+const idrMo  = [16274.5,16553.7,16575.0,16711.9,16359.7,16229.0,
+                16426.8,16409.0,16628.0,16150.0,16635.0,16709.0,
+                16758.4,16749.0,16975.4,17334.2,17816.0,18015.0];
+
+/* Blue pre-peak segment (Jan 25 – Dec 25, indices 0–11) */
+const ihsgPreY  = ihsgMo.map((v, i) => i <= 11 ? v : null);
+/* Red crash segment (Dec 25 – Jun 26, indices 11–17) */
+const ihsgPostY = ihsgMo.map((v, i) => i >= 11 ? v : null);
+
+/* Grey stable period (Jan 25 – Feb 26, indices 0–13) */
+const idrPreY  = idrMo.map((v, i) => i <= 13 ? v : null);
+/* Orange depreciation (Feb 26 – Jun 26, indices 13–17) */
+const idrPostY = idrMo.map((v, i) => i >= 13 ? v : null);
+
+/* Only show quarterly ticks to keep axis readable */
+const EXT_XTICKS = ['Jan 25','Apr 25','Jul 25','Oct 25','Jan 26','Mar 26','Jun 26'];
+const EXT_XAXIS  = { ...AX, tickangle: -35, tickfont: { size: 9.5 },
+                     tickvals: EXT_XTICKS, ticktext: EXT_XTICKS };
+
+/* Conflict line at index 13.5 (categorical axis uses numeric position) */
+const conflictLineExt = {
+  type: 'line', xref: 'x', yref: 'paper',
+  x0: 13.5, x1: 13.5, y0: 0, y1: 1,
+  line: { color: '#ef4444', width: 1, dash: 'dot' },
+};
+const conflictLabelExt = {
+  xref: 'x', yref: 'paper',
+  x: 13.65, y: 0.97, showarrow: false,
+  text: 'Conflict<br>onset',
+  font: { size: 8, color: '#ef4444' }, xanchor: 'left',
+};
+
+/* ── ce1: IHSG Monthly ───────────────────────────────────────────── */
+Plotly.newPlot('ce1', [
+  {
+    x: moExt, y: ihsgPreY,
+    type: 'scatter', mode: 'lines',
+    line: { color: '#2563EB', width: 1.8 },
+    showlegend: false,
+    hovertemplate: '%{x}: %{y:,.0f}<extra></extra>',
+    connectgaps: false,
+  },
+  {
+    x: moExt, y: ihsgPostY,
+    type: 'scatter', mode: 'lines',
+    line: { color: '#dc2626', width: 2.2 },
+    showlegend: false,
+    hovertemplate: '%{x}: %{y:,.0f}<extra></extra>',
+    connectgaps: false,
+  },
+], {
+  ...BASE,
+  title: ttl('<b>IHSG</b> (Jakarta Composite Index) — Monthly close'),
+  xaxis: EXT_XAXIS,
+  yaxis: { ...AXG,
+    range: [4600, 9800],
+    tickvals: [5000, 6000, 7000, 8000, 9000],
+    ticktext: ['5,000','6,000','7,000','8,000','9,000'],
+  },
+  shapes: [conflictLineExt],
+  annotations: [
+    conflictLabelExt,
+    { xref: 'x', yref: 'y', x: 'Dec 25', y: 8646.94,
+      showarrow: true, ax: 28, ay: -30,
+      text: 'Peak 8,647', font: { size: 9, color: '#2563EB' },
+      arrowcolor: '#2563EB', arrowwidth: 1, arrowsize: 0.7 },
+    { xref: 'x', yref: 'y', x: 'Jun 26', y: 5594.77,
+      showarrow: true, ax: -30, ay: 28,
+      text: 'Jun 5,595<br>−35%', font: { size: 9, color: '#dc2626' },
+      arrowcolor: '#dc2626', arrowwidth: 1, arrowsize: 0.7 },
+  ],
+}, CFG);
+
+/* ── ce2: IDR/USD Monthly ────────────────────────────────────────── */
+Plotly.newPlot('ce2', [
+  {
+    x: moExt, y: idrPreY,
+    type: 'scatter', mode: 'lines',
+    line: { color: '#6B7280', width: 1.6 },
+    showlegend: false,
+    hovertemplate: '%{x}: %{y:,.0f}<extra></extra>',
+    connectgaps: false,
+  },
+  {
+    x: moExt, y: idrPostY,
+    type: 'scatter', mode: 'lines',
+    line: { color: '#EA580C', width: 2.2 },
+    showlegend: false,
+    hovertemplate: '%{x}: %{y:,.0f}<extra></extra>',
+    connectgaps: false,
+  },
+], {
+  ...BASE,
+  title: ttl('<b>IDR/USD</b> — Rupiah depreciation (higher = weaker IDR)'),
+  xaxis: EXT_XAXIS,
+  yaxis: { ...AXG,
+    range: [14800, 18900],
+    tickvals: [15000, 16000, 17000, 18000],
+    ticktext: ['15,000','16,000','17,000','18,000'],
+    title: { text: 'IDR per USD', font: { size: 10 }, standoff: 4 },
+  },
+  shapes: [conflictLineExt],
+  annotations: [
+    conflictLabelExt,
+    { xref: 'x', yref: 'y', x: 'Jan 26', y: 16758.4,
+      showarrow: true, ax: 32, ay: 22,
+      text: 'Jan 26: 16,758', font: { size: 9, color: '#6B7280' },
+      arrowcolor: '#6B7280', arrowwidth: 1, arrowsize: 0.7 },
+    { xref: 'x', yref: 'y', x: 'Jun 26', y: 18015.0,
+      showarrow: true, ax: -28, ay: -28,
+      text: 'Jun 26: 18,015<br>+7.5%', font: { size: 9, color: '#EA580C' },
+      arrowcolor: '#EA580C', arrowwidth: 1, arrowsize: 0.7 },
+  ],
+}, CFG);
+
+/* ══════════════════════════════════════════════════════════════════
+   SLIDE 6 — Targeting errors & coverage by decile
+   Source: error_perlinsos.xlsx (Susenas / DTKS)
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── ce3: Grouped bar — EE and IE for 3 programmes ──────────────── */
+Plotly.newPlot('ce3', [
+  {
+    x: ['PKH', 'BPNT', 'PBI'],
+    y: [77.62, 74.40, 42.59],
+    name: 'Exclusion error — EE (poor HH not enrolled)',
+    type: 'bar',
+    marker: { color: 'rgba(220,38,38,0.80)' },
+    text: ['77.6%','74.4%','42.6%'],
+    textposition: 'outside',
+    textfont: { size: 11, color: '#b91c1c' },
+    hovertemplate: '%{x} EE: %{y:.1f}%<extra></extra>',
+  },
+  {
+    x: ['PKH', 'BPNT', 'PBI'],
+    y: [43.60, 36.10, 40.89],
+    name: 'Inclusion error — IE (non-poor enrolled)',
+    type: 'bar',
+    marker: { color: 'rgba(234,88,12,0.78)' },
+    text: ['43.6%','36.1%','40.9%'],
+    textposition: 'outside',
+    textfont: { size: 11, color: '#c2410c' },
+    hovertemplate: '%{x} IE: %{y:.1f}%<extra></extra>',
+  },
+], {
+  ...BASE,
+  margin: { ...BASE.margin, b: 28 },
+  title: ttl('<b>Targeting error rates</b> — Exclusion (EE) &amp; Inclusion (IE)'),
+  barmode: 'group',
+  bargap: 0.28,
+  bargroupgap: 0.06,
+  xaxis: { ...AX, tickfont: { size: 12 } },
+  yaxis: { ...AXG,
+    title: { text: '%', font: { size: 10 }, standoff: 4 },
+    range: [0, 94], tickvals: [0, 20, 40, 60, 80],
+  },
+  shapes: [{
+    type: 'line', xref: 'paper', yref: 'y',
+    x0: 0, x1: 1, y0: 50, y1: 50,
+    line: { color: '#9CA3AF', width: 1, dash: 'dot' },
+  }],
+  annotations: [{
+    xref: 'paper', yref: 'y', x: 0.01, y: 52, showarrow: false,
+    text: '50%', font: { size: 8.5, color: '#9CA3AF' }, xanchor: 'left',
+  }],
+  legend: { ...LEG_TR, y: 0.08, yanchor: 'bottom' },
+}, CFG);
+
+/* ── ce4: Coverage rate by expenditure decile ───────────────────── */
+const deciles = [1,2,3,4,5,6,7,8,9,10];
+const pkhCov  = [26.29,24.06,21.46,18.40,15.88,13.86,11.41,8.87,5.94,2.57];
+const bpntCov = [30.51,28.68,25.89,23.21,20.87,19.14,15.98,12.42,9.22,4.05];
+const pbiCov  = [58.81,59.35,57.76,56.95,54.16,51.66,47.96,42.66,35.40,20.86];
+
+Plotly.newPlot('ce4', [
+  {
+    x: deciles, y: pkhCov, name: 'PKH',
+    type: 'scatter', mode: 'lines+markers',
+    line: { color: '#2563EB', width: 1.8 },
+    marker: { color: '#2563EB', size: 5 },
+    hovertemplate: 'PKH — Decile %{x}: %{y:.1f}%<extra></extra>',
+  },
+  {
+    x: deciles, y: bpntCov, name: 'BPNT',
+    type: 'scatter', mode: 'lines+markers',
+    line: { color: '#0a8a8a', width: 1.8 },
+    marker: { color: '#0a8a8a', size: 5 },
+    hovertemplate: 'BPNT — Decile %{x}: %{y:.1f}%<extra></extra>',
+  },
+  {
+    x: deciles, y: pbiCov, name: 'PBI',
+    type: 'scatter', mode: 'lines+markers',
+    line: { color: '#EA580C', width: 1.8, dash: 'dot' },
+    marker: { color: '#EA580C', size: 5 },
+    hovertemplate: 'PBI — Decile %{x}: %{y:.1f}%<extra></extra>',
+  },
+], {
+  ...BASE,
+  title: ttl('<b>Coverage rate by expenditure decile</b> — % of households enrolled'),
+  xaxis: { ...AX,
+    title: { text: 'Decile  (1 = poorest)', font: { size: 10 }, standoff: 4 },
+    tickvals: [1,2,3,4,5,6,7,8,9,10], dtick: 1,
+  },
+  yaxis: { ...AXG,
+    title: { text: '% enrolled', font: { size: 10 }, standoff: 4 },
+    range: [0, 70], tickvals: [0, 20, 40, 60],
+  },
+  legend: LEG_TR,
+  annotations: [
+    { xref: 'x', yref: 'y', x: 1, y: 26.29,
+      showarrow: true, ax: -28, ay: 22,
+      text: '26% in<br>poorest dec.',
+      font: { size: 8.5, color: '#2563EB' },
+      arrowcolor: '#2563EB', arrowwidth: 1, arrowsize: 0.7 },
+    { xref: 'x', yref: 'y', x: 10, y: 2.57,
+      showarrow: true, ax: -22, ay: -22,
+      text: '2.6%',
+      font: { size: 8.5, color: '#2563EB' },
+      arrowcolor: '#2563EB', arrowwidth: 1, arrowsize: 0.7 },
+  ],
+}, CFG);
+
+/* ── Resize Plotly charts on slide change ────────────────────────── */
+Reveal.on('slidechanged', () => {
+  document.querySelectorAll('.js-plotly-plot').forEach(el => Plotly.Plots.resize(el));
+});
+</script>
+</body>
+</html>

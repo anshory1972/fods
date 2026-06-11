@@ -546,6 +546,46 @@
   </div>
 </section>
 
+<!-- ╔══════════════════════════════════════════════════════════════╗
+     ║  SLIDE 8 — ELECTRICITY SUBSIDY: IE > EE, REFORM CASE        ║
+     ╚══════════════════════════════════════════════════════════════╝ -->
+<section id="s-electricity">
+  <div class="s-bar"></div>
+  <div class="s-head">
+    <h2>Electricity Subsidy: A Compelling Reform Case</h2>
+    <div class="sub">Inclusion error far exceeds exclusion error — Rp 29.9T (~$1.66B) net savings potential &nbsp;·&nbsp; Susenas March 2025, APBN 2025, PLN</div>
+  </div>
+  <div class="s-body" style="padding-bottom:4px; gap:8px;">
+    <div style="flex:1; min-height:0; display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+      <div id="ce5" style="width:100%; height:100%;"></div>
+      <div id="ce6" style="width:100%; height:100%;"></div>
+    </div>
+    <div class="stat-row" style="flex-shrink:0; margin-bottom:0;">
+      <div class="stat" style="background:#fef2f2;">
+        <div class="n" style="color:#dc2626;">62.9%</div>
+        <div class="l">Inclusion error — non-poor (dec 4–10) receiving subsidi</div>
+      </div>
+      <div class="stat" style="background:#eff6ff;">
+        <div class="n" style="color:#1d4ed8;">32.5%</div>
+        <div class="l">Exclusion error — poor HH (dec 1–3) not receiving</div>
+      </div>
+      <div class="stat" style="background:#fef9c3;">
+        <div class="n" style="color:#854d0e;">Rp 29.9T</div>
+        <div class="l">Net savings: budget Rp 63.78T − IE Rp 40.74T + EE Rp 6.95T</div>
+      </div>
+      <div class="stat" style="background:#fef9c3;">
+        <div class="n" style="color:#854d0e;">~$1.66B</div>
+        <div class="l">USD equivalent @ IDR 18,015 — reallocatable to direct transfers</div>
+      </div>
+    </div>
+  </div>
+  <div class="s-foot">
+    Analysis: Susenas March 2025 matched to PLN subscriber data. Recipients flagged as: all 450VA customers + 900VA customers in DTKS (PKH/Sembako). &nbsp;
+    Baseline subsidy budget: Nota Keuangan APBN 2025 Rp 89.7T, calibrated to household segment Rp 63.78T. &nbsp;
+    35.23 million households currently receiving subsidi listrik (PLN, May 2025).
+  </div>
+</section>
+
 </div><!-- /.slides -->
 </div><!-- /.reveal -->
 
@@ -1091,6 +1131,112 @@ Plotly.newPlot('ce4', [
       font: { size: 8.5, color: '#2563EB' },
       arrowcolor: '#2563EB', arrowwidth: 1, arrowsize: 0.7 },
   ],
+}, CFG);
+
+/* ══════════════════════════════════════════════════════════════════
+   SLIDE 8 — Electricity subsidy targeting
+   Source: elect.png (Susenas Mar 2025, APBN 2025, PLN May 2025)
+   ══════════════════════════════════════════════════════════════════ */
+
+const electRecv = [71.2,67.9,63.7,59.9,54.1,50.5,45.3,37.8,29.9,16.6];
+
+/* ── ce5: % receiving electricity subsidy by decile ─────────────── */
+Plotly.newPlot('ce5', [
+  {
+    x: [1,2,3],
+    y: electRecv.slice(0,3),
+    name: 'Poor (dec 1–3) — eligible',
+    type: 'bar',
+    marker: { color: 'rgba(37,99,235,0.80)' },
+    text: electRecv.slice(0,3).map(v => v.toFixed(1)+'%'),
+    textposition: 'outside', textfont: { size: 10, color: '#1d4ed8' },
+    hovertemplate: 'Decile %{x}: %{y:.1f}% receiving<extra></extra>',
+  },
+  {
+    x: [4,5,6,7,8,9,10],
+    y: electRecv.slice(3),
+    name: 'Non-poor (dec 4–10) — inclusion error',
+    type: 'bar',
+    marker: { color: 'rgba(220,38,38,0.78)' },
+    text: electRecv.slice(3).map(v => v.toFixed(1)+'%'),
+    textposition: 'outside', textfont: { size: 10, color: '#b91c1c' },
+    hovertemplate: 'Decile %{x}: %{y:.1f}% receiving<extra></extra>',
+  },
+], {
+  ...BASE,
+  title: ttl('<b>Electricity subsidy coverage</b> — % of households receiving, by decile'),
+  barmode: 'group',
+  bargap: 0.22,
+  xaxis: { ...AX,
+    title: { text: 'Decile  (1 = poorest)', font:{size:10}, standoff:4 },
+    tickvals: [1,2,3,4,5,6,7,8,9,10], dtick: 1,
+  },
+  yaxis: { ...AXG,
+    title: { text: '% receiving', font:{size:10}, standoff:4 },
+    range: [0, 86], tickvals: [0,20,40,60,80],
+  },
+  shapes: [
+    { type:'rect', xref:'x', yref:'paper',
+      x0: 3.5, x1: 10.5, y0: 0, y1: 1,
+      fillcolor: 'rgba(220,38,38,0.04)', line:{ width:0 } },
+  ],
+  annotations: [
+    { xref:'x', yref:'paper', x:7, y:0.97, showarrow:false,
+      text:'← 62.9% of all recipients are here (IE)',
+      font:{ size:9, color:'#dc2626' }, xanchor:'center' },
+    { xref:'x', yref:'paper', x:2, y:0.20, showarrow:false,
+      text:'EE: 28–36%<br>not covered',
+      font:{ size:9, color:'#2563EB' }, xanchor:'center' },
+  ],
+  legend: { ...LEG_TR, y:0.12, yanchor:'bottom' },
+}, CFG);
+
+/* ── ce6: EE vs IE — electricity vs cash transfer programmes ─────── */
+Plotly.newPlot('ce6', [
+  {
+    x: ['PKH','BPNT','PBI','Electricity'],
+    y: [77.62, 74.40, 42.59, 32.5],
+    name: 'Exclusion error — EE (poor not covered)',
+    type: 'bar',
+    marker: { color: ['rgba(37,99,235,0.75)','rgba(37,99,235,0.75)','rgba(37,99,235,0.75)','rgba(37,99,235,0.90)'] },
+    text: ['77.6%','74.4%','42.6%','32.5%'],
+    textposition: 'outside', textfont: { size: 10.5, color: '#1d4ed8' },
+    hovertemplate: '%{x} EE: %{y:.1f}%<extra></extra>',
+  },
+  {
+    x: ['PKH','BPNT','PBI','Electricity'],
+    y: [43.60, 36.10, 40.89, 62.9],
+    name: 'Inclusion error — IE (non-poor covered)',
+    type: 'bar',
+    marker: { color: ['rgba(234,88,12,0.70)','rgba(234,88,12,0.70)','rgba(234,88,12,0.70)','rgba(220,38,38,0.88)'] },
+    text: ['43.6%','36.1%','40.9%','62.9%'],
+    textposition: 'outside', textfont: { size: 10.5, color: '#b91c1c' },
+    hovertemplate: '%{x} IE: %{y:.1f}%<extra></extra>',
+  },
+], {
+  ...BASE,
+  title: ttl('<b>EE vs IE</b> — Electricity subsidy vs direct cash transfers'),
+  barmode: 'group',
+  bargap: 0.25, bargroupgap: 0.06,
+  xaxis: { ...AX, tickfont:{ size:11.5 } },
+  yaxis: { ...AXG,
+    title: { text:'%', font:{size:10}, standoff:4 },
+    range: [0, 90], tickvals: [0,20,40,60,80],
+  },
+  shapes: [
+    { type:'line', xref:'paper', yref:'y', x0:0, x1:1, y0:50, y1:50,
+      line:{ color:'#9CA3AF', width:1, dash:'dot' } },
+    { type:'rect', xref:'x', yref:'paper', x0:2.5, x1:3.5, y0:0, y1:1,
+      fillcolor:'rgba(253,224,71,0.15)', line:{ width:0 } },
+  ],
+  annotations: [
+    { xref:'paper', yref:'y', x:0.01, y:52, showarrow:false,
+      text:'50%', font:{size:8.5,color:'#9CA3AF'}, xanchor:'left' },
+    { xref:'x', yref:'paper', x:3, y:0.99, showarrow:false,
+      text:'IE > EE<br>← unique case',
+      font:{size:9,color:'#854d0e'}, xanchor:'center', yanchor:'top' },
+  ],
+  legend: { ...LEG_TR, y:0.08, yanchor:'bottom' },
 }, CFG);
 
 /* ── Resize Plotly charts on slide change ────────────────────────── */
